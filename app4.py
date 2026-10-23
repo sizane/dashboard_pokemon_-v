@@ -158,13 +158,10 @@ with c3:
     st.plotly_chart(fig, width="stretch")
 
 with c4:
-    fig = px.histogram(filtered, x="base_stat_total", facet_col="category",
-                       title="Distribusi Base Stat Total per Kategori",
-                       labels={"base_stat_total": "Base Stat Total"})
-    fig.update_traces(xbins=dict(size=50))
-    fig.update_yaxes(matches=None)
-    fig.update_layout(showlegend=False, yaxis_title="Jumlah")
-    fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
+    fig = px.histogram(filtered, x="base_stat_total", nbins=30, color="category",
+                       title="Distribusi Base Stat Total",
+                       labels={"base_stat_total": "Base Stat Total", "count": "Jumlah"})
+    fig.update_layout(barmode="stack", yaxis_title="Jumlah")
     st.plotly_chart(fig, width="stretch")
 
 
