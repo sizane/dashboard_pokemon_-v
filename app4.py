@@ -158,10 +158,13 @@ with c3:
     st.plotly_chart(fig, width="stretch")
 
 with c4:
-    fig = px.histogram(filtered, x="base_stat_total", nbins=30, color="category",
-                       title="Distribusi Base Stat Total",
-                       labels={"base_stat_total": "Base Stat Total", "count": "Jumlah"})
-    fig.update_layout(barmode="stack", yaxis_title="Jumlah")
+    fig = px.histogram(filtered, x="base_stat_total", facet_col="category",
+                       title="Distribusi Base Stat Total per Kategori",
+                       labels={"base_stat_total": "Base Stat Total"})
+    fig.update_traces(xbins=dict(size=50))
+    fig.update_yaxes(matches=None)
+    fig.update_layout(showlegend=False, yaxis_title="Jumlah")
+    fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
     st.plotly_chart(fig, width="stretch")
 
 
@@ -204,10 +207,8 @@ with st.expander("Lihat seluruh data hasil filter"):
 st.divider()
 st.subheader("Unduh Dataset Bersih")
 st.markdown(
-    f"Dataset hasil pembersihan (**{df.shape[0]:,} baris, {df.shape[1]} kolom**): duplikat dihapus, "
-    "teks dirapikan, nilai kosong diisi, dan kolom baru ditambahkan (`form_type`, `base_stat_total`, "
-    "`category`, `generation_num`, `height_m`, `weight_kg`, dll). File ini berisi **seluruh data**, "
-    "tidak terpengaruh filter."
+    f"Dataset hasil pembersihan duplikat dihapus, teks dirapikan, nilai kosong diisi, dan "
+    "kolom baru ditambahkan (form_type, base_stat_total, category, generation_num, height_m, weight_kg, dll)"
 )
 st.download_button("Unduh pokemon_clean.csv",
                    df.to_csv(index=False).encode("utf-8"),
