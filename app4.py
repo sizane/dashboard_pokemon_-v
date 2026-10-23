@@ -128,7 +128,7 @@ k5.caption(f"BST: {int(strongest['base_stat_total'])}")
 st.divider()
 
 
-c1, c2 = st.columns([3, 2])
+c1, c2 = st.columns([2.5, 2.5])
 
 with c1:
     type_count = filtered["type_1"].value_counts().reset_index()
