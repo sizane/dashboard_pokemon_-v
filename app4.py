@@ -76,8 +76,8 @@ df = load_and_clean(RAW_FILE)
 st.title("Dashboard Pokemon Complete Stats")
 st.markdown(
     f"Dashboard interaktif untuk mengeksplorasi **{len(df):,} Pokemon** (spesies dasar + varian "
-    "seperti Mega, Gigantamax, dan bentuk regional) dari dataset Kaggle *Pokemon Complete Stats*. "
-    "Gunakan filter di sidebar untuk menelusuri tipe, generasi, kategori, dan kekuatan Pokemon."
+    "seperti Mega, Gigantamax, dan bentuk regional) dari dataset Kaggle . "
+    "https://www.kaggle.com/datasets/shreyashautomation/pokemon-stats-dataset"
 )
 
 
@@ -116,12 +116,14 @@ if filtered.empty:
 strongest = filtered.loc[filtered["base_stat_total"].idxmax()]
 n_special = int((filtered["category"] != "Regular").sum())
 
-k1, k2, k3, k4, k5 = st.columns(5)
+k1, k2, k3, k4, k5 = st.columns([1, 1, 1, 1, 1.5])
 k1.metric("Total Pokemon", f"{len(filtered):,}")
 k2.metric("Rata-rata Base Stat Total", f"{filtered['base_stat_total'].mean():.0f}")
 k3.metric("Legendary + Mythical", f"{n_special:,}", f"{n_special / len(filtered):.1%} dari total", delta_color="off")
 k4.metric("Rata-rata Capture Rate", f"{filtered['capture_rate'].mean():.0f}")
-k5.metric("Terkuat (BST)", strongest["name_display"], f"{int(strongest['base_stat_total'])}", delta_color="off")
+k5.caption("Terkuat (BST)")
+k5.subheader(strongest["name_display"])
+k5.caption(f"BST: {int(strongest['base_stat_total'])}")
 
 st.divider()
 
