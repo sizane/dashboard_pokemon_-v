@@ -92,7 +92,7 @@ type_sel = st.sidebar.multiselect("Tipe Utama (type_1)", type_options, default=t
 cat_options = ["Regular", "Legendary", "Mythical"]
 cat_sel = st.sidebar.multiselect("Kategori", cat_options, default=cat_options)
 
-include_forms = st.sidebar.checkbox("Sertakan varian (Mega, Gigantamax, dll)", value=True)
+include_forms = st.sidebar.checkbox("Varian (Mega, Gigantamax, dll)", value=True)
 
 bst_min, bst_max = int(df["base_stat_total"].min()), int(df["base_stat_total"].max())
 bst_sel = st.sidebar.slider("Rentang Base Stat Total", bst_min, bst_max, (bst_min, bst_max))
