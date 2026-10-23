@@ -77,7 +77,7 @@ st.title("Dashboard Pokemon Complete Stats")
 st.markdown(
     f"Dashboard interaktif untuk mengeksplorasi **{len(df):,} Pokemon** (spesies dasar + varian "
     "seperti Mega, Gigantamax, dan bentuk regional) dari dataset Kaggle . "
-    "https://www.kaggle.com/datasets/shreyashautomation/pokemon-stats-dataset"
+    "sumber : https://www.kaggle.com/datasets/shreyashautomation/pokemon-stats-dataset"
 )
 
 
