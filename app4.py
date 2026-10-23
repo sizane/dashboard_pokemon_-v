@@ -142,7 +142,7 @@ with c1:
 with c2:
     cat_count = filtered["category"].value_counts().reset_index()
     cat_count.columns = ["category", "jumlah"]
-    fig = px.pie(cat_count, names="category", values="jumlah", hole=0.25,
+    fig = px.pie(cat_count, names="category", values="jumlah", hole=0.45,
                  title="Proporsi Kategori Pokemon")
     st.plotly_chart(fig, width="stretch")
 
