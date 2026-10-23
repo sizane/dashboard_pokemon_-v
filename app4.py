@@ -29,7 +29,7 @@ def load_and_clean(path):
     df["type_2"] = df["type_2"].fillna("Tidak Ada")
     df["abilities"] = df["abilities"].fillna("Tidak Diketahui")
 
-    # 4. Kolom baru: jenis bentuk (Base / Mega / Gigantamax / dst)
+    # 4. Kolom baru (Base / Mega / Gigantamax / dst)
     df["form_type"] = "Base"
     df.loc[df["id"] > 10000, "form_type"] = "Other Form"
     df.loc[df["name"].str.contains("-mega"), "form_type"] = "Mega"
@@ -46,7 +46,7 @@ def load_and_clean(path):
     df["category"] = np.where(df["is_mythical"], "Mythical",
                               np.where(df["is_legendary"], "Legendary", "Regular"))
 
-    # 7. Generasi (angka dan label)
+    # 7. Generasi pokemon
     df["generation_num"] = df["generation"].map({
         "generation-i": 1, "generation-ii": 2, "generation-iii": 3,
         "generation-iv": 4, "generation-v": 5, "generation-vi": 6,
